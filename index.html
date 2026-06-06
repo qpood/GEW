@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Everyday Bento Kit — Waitlist Preview</title>
+  <meta name="description" content="A waitlist landing page demo for a stainless steel bento kit inspired by everyday bento lunch videos." />
+  <style>
+    :root{
+      --bg:#f8f3ea;
+      --paper:#fffdf8;
+      --ink:#1f2933;
+      --muted:#64707d;
+      --line:#e7dccd;
+      --steel:#aeb6bb;
+      --blue:#6fa8c9;
+      --sage:#9dbb9a;
+      --butter:#f2d486;
+      --rose:#e9a6a6;
+      --dark:#22313f;
+      --shadow:0 20px 60px rgba(47,42,35,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;line-height:1.55}
+    a{color:inherit}
+    .wrap{width:min(1120px,92vw);margin:0 auto}
+    header{padding:24px 0;position:sticky;top:0;z-index:10;background:rgba(248,243,234,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(231,220,205,.65)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:760;letter-spacing:.02em}
+    .mark{width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,var(--steel),#f6f7f7);border:1px solid #d6dadd;box-shadow:inset 0 1px 2px rgba(255,255,255,.9)}
+    .pill{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:10px 16px;background:#fffaf0;font-weight:650;font-size:14px;color:var(--dark)}
+    .hero{padding:70px 0 46px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#fff8df;border:1px solid #f0dc9a;color:#705a12;font-size:13px;font-weight:700;margin-bottom:18px}
+    h1{font-size:clamp(42px,6vw,78px);line-height:.98;margin:0 0 22px;letter-spacing:-.055em;color:#182331}
+    .lead{font-size:clamp(18px,2.1vw,24px);color:#4e5965;margin:0 0 28px;max-width:640px}
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:32px}
+    .btn{border:0;border-radius:999px;padding:15px 22px;font-weight:800;font-size:16px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s transform,.2s box-shadow}
+    .btn-primary{background:#1f2f3e;color:white;box-shadow:0 14px 28px rgba(31,47,62,.2)}
+    .btn-secondary{background:#fffaf3;color:#23303b;border:1px solid var(--line)}
+    .btn:hover{transform:translateY(-2px)}
+    .hero-card{border-radius:34px;background:linear-gradient(145deg,#fffdf9,#eee6dc);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;position:relative;overflow:hidden;min-height:520px}
+    .bento{height:390px;border-radius:30px;background:linear-gradient(135deg,#d5d7d7,#f5f6f6 42%,#9fa8ad);padding:18px;display:grid;grid-template-columns:1fr 1.1fr;grid-template-rows:1.15fr .8fr 1fr;gap:12px;transform:rotate(-8deg);box-shadow:0 18px 60px rgba(71,73,72,.24), inset 0 3px 12px rgba(255,255,255,.75);border:2px solid #c6cccf;margin:36px auto 0;max-width:470px}
+    .slot{border-radius:20px;background:linear-gradient(145deg,#cfd5d6,#f9fbfa);border:2px solid #a8b0b4;box-shadow:inset 0 5px 14px rgba(0,0,0,.12)}
+    .slot:nth-child(2){grid-row:span 2}.slot:nth-child(3){grid-column:span 2}.slot:nth-child(5){background:linear-gradient(145deg,#b6cad0,#f2f7f6)}
+    .tag{position:absolute;right:28px;bottom:28px;background:white;border:1px solid var(--line);border-radius:22px;padding:16px 18px;box-shadow:0 14px 30px rgba(47,42,35,.1)}
+    .tag strong{display:block;font-size:17px}.tag span{color:var(--muted);font-size:14px}
+    section{padding:48px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}
+    h2{font-size:clamp(30px,4vw,48px);line-height:1.04;letter-spacing:-.04em;margin:0;color:#172331}
+    .sub{color:var(--muted);max-width:620px;margin:8px 0 0;font-size:17px}
+    .grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .item{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:18px;min-height:170px;box-shadow:0 10px 30px rgba(47,42,35,.06)}
+    .icon{width:46px;height:46px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:23px;background:#eff6f8}
+    .item:nth-child(2) .icon{background:#f6eeee}.item:nth-child(3) .icon{background:#eef4ea}.item:nth-child(4) .icon{background:#fff4ce}.item:nth-child(5) .icon{background:#edf2f6}
+    .item h3{font-size:17px;margin:0 0 7px}.item p{font-size:14px;color:var(--muted);margin:0}
+    .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:stretch}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:0 10px 30px rgba(47,42,35,.06)}
+    .bullets{display:grid;gap:13px;margin:20px 0 0;padding:0;list-style:none}
+    .bullets li{display:flex;gap:11px;align-items:flex-start;color:#43505d}.bullets li:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sage);margin-top:8px;flex:none}
+    .audience{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+    .audience div{background:#fff8ed;border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center;font-weight:700;font-size:14px}
+    .safe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}
+    .safe div{background:#f6f8f8;border:1px solid #dde4e5;border-radius:18px;padding:14px;font-size:14px;color:#45515d}
+    .form-card{background:#1f2f3e;color:white;border-radius:34px;padding:34px;box-shadow:var(--shadow)}
+    .form-card h2{color:white}.form-card .sub{color:#d8e0e7}
+    form{display:grid;gap:14px;margin-top:24px}
+    label{font-size:13px;font-weight:800;color:#dfe8ef;text-transform:uppercase;letter-spacing:.06em}
+    input,select{width:100%;padding:15px 16px;border-radius:15px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);color:white;font-size:16px;outline:none}
+    input::placeholder{color:#b9c7d2} select option{color:#1f2933}
+    .form-note{font-size:13px;color:#becbd4;margin:4px 0 0}
+    .faq{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    details{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px}summary{font-weight:800;cursor:pointer}details p{color:var(--muted);margin:12px 0 0}
+    footer{padding:34px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+    @media (max-width:860px){.hero-grid,.split{grid-template-columns:1fr}.grid-5{grid-template-columns:1fr 1fr}.audience{grid-template-columns:1fr 1fr}.safe,.faq{grid-template-columns:1fr}.hero-card{min-height:430px}.bento{height:310px}.section-head{display:block}}
+    @media (max-width:540px){.grid-5{grid-template-columns:1fr}.hero{padding-top:42px}.hero-card{padding:18px}.bento{height:260px}.tag{position:static;margin-top:20px}.nav .pill{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><div class="mark"></div><span>Everyday Bento Kit</span></div>
+      <a href="#waitlist" class="pill">Join the waitlist</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Preview demo · not for sale yet</div>
+          <h1>Make everyday bento easier, cleaner, and cuter.</h1>
+          <p class="lead">A stainless steel bento kit concept inspired by everyday lunch videos: simple meals, neat compartments, soft colors, and a calm lunch routine.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#waitlist">Join the Waitlist</a>
+            <a class="btn btn-secondary" href="#concept">See the kit idea</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Bento box concept illustration">
+          <div class="bento">
+            <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+          </div>
+          <div class="tag"><strong>First batch: limited</strong><span>Sample testing in progress</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="concept">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>What could be inside?</h2><p class="sub">The first version is still being tested. The goal is not to build a big kitchen store, but one useful lunch system.</p></div>
+        </div>
+        <div class="grid-5">
+          <div class="item"><div class="icon">▣</div><h3>Stainless bento box</h3><p>Organized compartments for rice, fruit, snacks, and small sides.</p></div>
+          <div class="item"><div class="icon">◒</div><h3>Sauce cups</h3><p>For dips, yogurt, tiny fruit portions, or small sides.</p></div>
+          <div class="item"><div class="icon">▤</div><h3>Lunch bag</h3><p>A simple carry bag for school, work, picnic, or daily use.</p></div>
+          <div class="item"><div class="icon">♢</div><h3>Compact utensils</h3><p>Small tools that fit the lunch routine without taking over the bag.</p></div>
+          <div class="item"><div class="icon">✎</div><h3>Bento idea cards</h3><p>Easy inspiration for simple, cute meals without overthinking.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap split">
+        <div class="panel">
+          <h2>Not just a lunchbox.</h2>
+          <p class="sub">It is a small system for making everyday meals feel more intentional.</p>
+          <ul class="bullets">
+            <li>Cleaner lunch setup</li>
+            <li>Simple cute bento ideas</li>
+            <li>Less plastic in daily meals</li>
+            <li>Good in photos and real life</li>
+            <li>Easier start for beginners</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2>Who is it for?</h2>
+          <p class="sub">Not only for kids. Not only for expert cooks.</p>
+          <div class="audience">
+            <div>Students</div><div>Office lunch</div><div>Parents</div><div>Food lovers</div><div>Bento beginners</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap panel">
+        <h2>Material and safety first.</h2>
+        <p class="sub">Before launch, samples and supplier documents need to be reviewed. Claims will be conservative until verified.</p>
+        <div class="safe">
+          <div>Stainless steel grade to be confirmed by documents.</div>
+          <div>Food-contact material documents under review.</div>
+          <div>Dishwasher safety must be stated by part.</div>
+          <div>Stainless steel should not be microwaved unless clearly tested and instructed.</div>
+          <div>Small accessories are not toys.</div>
+          <div>Final dimensions, capacity, and weight will be shown before launch.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="waitlist">
+      <div class="wrap form-card">
+        <h2>Join the waitlist</h2>
+        <p class="sub">Be the first to know when samples and first-batch details are ready.</p>
+        <form onsubmit="event.preventDefault();document.getElementById('thanks').style.display='block';this.reset();">
+          <div><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
+          <div><label for="country">Country</label><input id="country" name="country" type="text" placeholder="United States" /></div>
+          <div><label for="interest">What are you most interested in?</label><select id="interest" name="interest"><option>Stainless bento box</option><option>Bento box + lunch bag bundle</option><option>Add-on accessories kit</option><option>Not sure yet</option></select></div>
+          <button class="btn btn-primary" style="background:#f2d486;color:#1f2f3e" type="submit">Join the Waitlist</button>
+          <p id="thanks" class="form-note" style="display:none">Thank you. You are on the demo waitlist. This preview does not store submissions yet.</p>
+          <p class="form-note">Demo only. Form storage can later connect to Shopify, Klaviyo, Mailchimp, or Google Sheets.</p>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <div class="faq" style="margin-top:20px">
+          <details open><summary>Is this available now?</summary><p>Not yet. This is a waitlist preview while samples and supplier documents are being reviewed.</p></details>
+          <details><summary>Is this the exact box used in videos?</summary><p>The page is built around the same everyday bento use case. Final product details will be confirmed after sample testing.</p></details>
+          <details><summary>Will it be safe for food contact?</summary><p>The product should only launch after material information and food-contact documentation are reviewed.</p></details>
+          <details><summary>Can it go in the microwave?</summary><p>Stainless steel products should not be microwaved unless there are clear tested instructions. Final care instructions will be shown before launch.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Everyday Bento Kit preview · Built for validation before product launch.</div>
+  </footer>
+</body>
+</html>
